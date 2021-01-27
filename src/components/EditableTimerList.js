@@ -3,21 +3,21 @@ import React from 'react';
 import EditableTimer from './EditableTimer';
 
 export default class EditableTimerList extends React.Component {
-    å;
     render() {
-        const timers = this.props.timers.map( ( timer ) => (
+        const { timers } = this.props;
+        const timerElements = timers.map( ( timer ) => (
             <EditableTimer
                 key={ timer.id }
                 id={ timer.id }
                 title={ timer.title }
                 project={ timer.project }
                 elapsed={ timer.elapsed }
-                runningSince={ timer.runningSince }
+                runningSince={ timer.runningSince ? timer.runningSince : null }
             />
         ) );
         return (
             <div id='timers'>
-                {timers }
+                { timerElements }
             </div>
         );
     }
