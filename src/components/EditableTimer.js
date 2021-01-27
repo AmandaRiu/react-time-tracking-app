@@ -4,18 +4,23 @@ import TimerForm from './TimerForm';
 import Timer from './Timer';
 
 export default class EditableTimer extends React.Component {
+    state = {
+        editFormOpen: false,
+    };
+
     render() {
         const {
-            editFormOpen,
+            id,
             title,
             project,
             elapsed,
             runningSince
         } = this.props;
 
-        if ( editFormOpen ) {
+        if ( this.state.editFormOpen ) {
             return (
                 <TimerForm
+                    id={ id }
                     title={ title }
                     project={ project }
                 />
@@ -23,6 +28,7 @@ export default class EditableTimer extends React.Component {
         } else {
             return (
                 <Timer
+                    id={ id }
                     title={ title }
                     project={ project }
                     elapsed={ elapsed }
