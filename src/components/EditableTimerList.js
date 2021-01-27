@@ -13,6 +13,7 @@ export default class EditableTimerList extends React.Component {
                 project={ timer.project }
                 elapsed={ timer.elapsed }
                 runningSince={ timer.runningSince ? timer.runningSince : null }
+                onFormSubmit={ this.props.onFormSubmit }
             />
         ) );
         return (

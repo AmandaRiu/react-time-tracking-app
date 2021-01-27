@@ -33,11 +33,29 @@ function App() {
     setTimers( timers.concat( t ) );
   };
 
+  const handleEditFormSubmit = ( attrs ) => {
+    updateTimer( attrs );
+  };
+
+  const updateTimer = ( attrs ) => {
+    setTimers( timers.map( ( timer ) => {
+      if ( timer.id === attrs.id ) {
+        return Object.assign( {}, timer, {
+          title: attrs.title,
+          project: attrs.project,
+        } );
+      } else {
+        return timer;
+      }
+    } ) );
+  };
+
   return (
     <div className="ui three column centered grid">
       <div className="column">
         <EditableTimerList
           timers={ timers }
+          onFormSubmit={ handleEditFormSubmit }
         />
         <ToggleableTimerForm
           onFormSubmit={ handleCreateFormSubmit }
