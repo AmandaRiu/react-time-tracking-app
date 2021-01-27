@@ -37,6 +37,10 @@ function App() {
     updateTimer( attrs );
   };
 
+  const handleTrashClick = ( timerId ) => {
+    setTimers( timers.filter( t => t.id !== timerId ) );
+  };
+
   const updateTimer = ( attrs ) => {
     setTimers( timers.map( ( timer ) => {
       if ( timer.id === attrs.id ) {
@@ -56,6 +60,7 @@ function App() {
         <EditableTimerList
           timers={ timers }
           onFormSubmit={ handleEditFormSubmit }
+          onTrashClick={ handleTrashClick }
         />
         <ToggleableTimerForm
           onFormSubmit={ handleCreateFormSubmit }

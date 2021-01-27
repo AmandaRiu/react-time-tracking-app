@@ -5,6 +5,10 @@ import { renderElapsedString } from "../utils/helpers";
 export default function Timer( props ) {
     const elapsedString = renderElapsedString( props.elapsed );
 
+    const handleTrashClick = () => {
+        props.onTrashClick( props.id );
+    };
+
     return (
         <div className='ui centered card'>
             <div className='content'>
@@ -26,7 +30,10 @@ export default function Timer( props ) {
                     >
                         <i className='edit icon' />
                     </span>
-                    <span className='right floated trash icon'>
+                    <span
+                        className='right floated trash icon'
+                        onClick={ handleTrashClick }
+                    >
                         <i className='trash icon' />
                     </span>
                 </div>

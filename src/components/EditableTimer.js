@@ -57,6 +57,7 @@ export default class EditableTimer extends React.Component {
                     elapsed={ elapsed }
                     runningSince={ runningSince }
                     onEditClick={ this.handleEditClick }
+                    onTrashClick={ this.props.onTrashClick }
                 />
             );
         }
