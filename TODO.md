@@ -1,0 +1,2 @@
+- Convert classes to functional components
+- Use the { boolean && } syntax where possible
