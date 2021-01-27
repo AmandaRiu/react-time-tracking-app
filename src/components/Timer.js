@@ -1,21 +1,40 @@
 import React from 'react';
 
 import { renderElapsedString } from "../utils/helpers";
+import TimerActionButton from './TimerActionButton';
 
 export default class Timer extends React.Component {
     constructor( props ) {
         super( props );
 
-        this.elapsedString = renderElapsedString( this.props.elapsed );
         console.log( this.elapsedString );
     }
 
+    UNSAFE_componentWillMount() {
+        this.forceUpdateInterval = setInterval( () => this.forceUpdate(), 50 );
+    }
+
+    componentWillUnmount() {
+        clearInterval( this.forceUpdateInterval );
+    }
+
+    handleStartClick = () => {
+        this.props.onStartClick( this.props.id );
+    };
+
+    handleStopClick = () => {
+        this.props.onStopClick( this.props.id );
+    };
 
     handleTrashClick = () => {
         this.props.onTrashClick( this.props.id );
     };
 
     render() {
+        const elapsedString = renderElapsedString(
+            this.props.elapsed, this.props.runningSince
+        );
+
         return (
             <div className='ui centered card'>
                 <div className='content'>
@@ -27,7 +46,7 @@ export default class Timer extends React.Component {
                     </div>
                     <div className='center aligned description'>
                         <h2>
-                            { this.elapsedString }
+                            { elapsedString }
                         </h2>
                     </div>
                     <div className='extra content'>
@@ -45,9 +64,10 @@ export default class Timer extends React.Component {
                         </span>
                     </div>
                 </div>
-                <div className='ui bottom attached blue basic button'>
-                    Start
-            </div>
+                <TimerActionButton
+                    timerIsRunning={ !!this.props.runningSince }
+                    onStartClick={ this.handleStartClick }
+                    onStopClick={ this.handleStopClick } />
             </div>
         );
     }
