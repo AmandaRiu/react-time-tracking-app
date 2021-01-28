@@ -2,6 +2,10 @@
 
 This app is based off the version from the [FullStack React (rev. 33 - 2017)](https://www.newline.co/fullstack-react/) book with some fixes and tweaks I'll be adding along the way as I learn more about React. Libraries and dependencies have mostly either been updated to use the most current version as of the commit, or replaced altogether. 
 
+
+![](/assets/demo.gif)
+
+
 ### Install & Run
 One of the biggest departures from the book version is how this version is setup to run both a server and the client concurrently using different npm packages. 
 
