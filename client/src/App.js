@@ -61,7 +61,7 @@ class App extends React.Component {
     const now = Date.now();
 
     this.setState( {
-      timer: this.state.timers.map( ( timer ) => {
+      timers: this.state.timers.map( ( timer ) => {
         if ( timer.id === timerId ) {
           const lastElapsed = now - timer.runningSince;
           return Object.assign( {}, timer, {
