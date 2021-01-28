@@ -4,7 +4,7 @@ import React from 'react';
 import EditableTimerList from './components/EditableTimerList';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
 import { newTimer } from './utils/helpers';
-import { getTimers } from './network/client';
+import * as client from './network/client';
 
 class App extends React.Component {
   state = {
@@ -12,20 +12,22 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log( `App > componentDidMount` );
     this.loadTimersFromServer();
-    setInterval( this.loadTimersFromServer, 5000 );
+    this.interval = setInterval( this.loadTimersFromServer, 5000 );
   }
 
+  componentWillUnmount() {
+    clearInterval( this.interval );
+  }
+
+  /**
+   * Request timers from the API and load
+   * result into state. 
+   */
   loadTimersFromServer = () => {
-    getTimers( ( serverTimers ) => {
-      console.log( `App > loadTimersFromServer > ${serverTimers}` );
+    client.getTimers( ( serverTimers ) => {
       this.setState( { timers: serverTimers } );
     } );
-  };
-
-  handleCreateFormSubmit = ( timer ) => {
-    this.createTimer( timer );
   };
 
   createTimer = ( timer ) => {
@@ -33,24 +35,8 @@ class App extends React.Component {
     this.setState( {
       timers: this.state.timers.concat( t )
     } );
-  };
 
-  handleEditFormSubmit = ( attrs ) => {
-    this.updateTimer( attrs );
-  };
-
-  handleTrashClick = ( timerId ) => {
-    this.setState( {
-      timers: this.state.timers.filter( t => t.id !== timerId )
-    } );
-  };
-
-  handleStartClick = ( timerId ) => {
-    this.startTimer( timerId );
-  };
-
-  handleStopClick = ( timerId ) => {
-    this.stopTimer( timerId );
+    client.createTimer( t );
   };
 
   startTimer = ( timerId ) => {
@@ -67,6 +53,8 @@ class App extends React.Component {
         }
       } )
     } );
+
+    client.startTimer( { id: timerId, start: now } );
   };
 
   stopTimer = ( timerId ) => {
@@ -85,6 +73,8 @@ class App extends React.Component {
         }
       } )
     } );
+
+    client.stopTimer( { id: timerId, stop: now } );
   };
 
   updateTimer = ( attrs ) => {
@@ -100,6 +90,31 @@ class App extends React.Component {
         }
       } )
     } );
+
+    client.updateTimer( attrs );
+  };
+
+  handleCreateFormSubmit = ( timer ) => {
+    this.createTimer( timer );
+  };
+
+  handleEditFormSubmit = ( attrs ) => {
+    this.updateTimer( attrs );
+  };
+
+  handleStartClick = ( timerId ) => {
+    this.startTimer( timerId );
+  };
+
+  handleStopClick = ( timerId ) => {
+    this.stopTimer( timerId );
+  };
+
+  handleTrashClick = ( timerId ) => {
+    this.setState( {
+      timers: this.state.timers.filter( t => t.id !== timerId )
+    } );
+    client.deleteTimer( { id: timerId } );
   };
 
   render() {

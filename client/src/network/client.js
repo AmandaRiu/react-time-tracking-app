@@ -1,5 +1,4 @@
 export function getTimers( success ) {
-    console.log( `client > getTimers` );
     return fetch( '/api/timers', {
         headers: {
             Accept: 'application/json',
@@ -65,7 +64,6 @@ export function stopTimer( data ) {
 }
 
 function checkStatus( response ) {
-    console.log( `client > checkStatus> ${JSON.stringify( response )}` );
     if ( response.status >= 200 && response.status < 300 ) {
         return response;
     } else {

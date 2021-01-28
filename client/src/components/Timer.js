@@ -4,12 +4,6 @@ import { renderElapsedString } from "../utils/helpers";
 import TimerActionButton from './TimerActionButton';
 
 export default class Timer extends React.Component {
-    constructor( props ) {
-        super( props );
-
-        console.log( this.elapsedString );
-    }
-
     UNSAFE_componentWillMount() {
         this.forceUpdateInterval = setInterval( () => this.forceUpdate(), 50 );
     }

@@ -18,12 +18,14 @@ One of the biggest departures from the book version is how this version is setup
 - [express](http://expressjs.com/): Web server/API.
 - [body-parser](https://www.npmjs.com/package/body-parser): For parsing node.js responses. 
 - [path](https://www.npmjs.com/package/path): (nodejs path module) Utilities for working with file and directory paths. 
-- [concurrently](https://www.npmjs.com/package/concurrently) for running commands concurrently
+- [concurrently](https://www.npmjs.com/package/concurrently) for running commands concurrently. Used to run both the server and client at the same time. 
 
 ## Working with the server
 
 ### Testing the server
 With the server running, run the following commands from a terminal. To make parsing and viewing the server responses much nicer and easier to work with, use a tool like [jq](https://stedolan.github.io/jq/). 
+
+Check the `data.json` file after each command to verify the changes have been made.
 
 **Get all timers**
 ```

@@ -15,7 +15,8 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server.js",
     "client": "node start-client.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "reset-data": "cp data.json.pristine data.json"
   },
   "browserslist": {
     "production": [

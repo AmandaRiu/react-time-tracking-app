@@ -139,6 +139,7 @@ app.put( '/api/timers', ( req, res ) => {
  * @return an empty json object.
  */
 app.delete( '/api/timers', ( req, res ) => {
+    console.log( JSON.stringify( req.body ) );
     fs.readFile( DATA_FILE, ( err, data ) => {
         let timers = JSON.parse( data );
         timers = timers.reduce( ( memo, timer ) => {
