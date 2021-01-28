@@ -1,2 +1,3 @@
 - Convert classes to functional components
 - Use the { boolean && } syntax where possible
+- Add error handling to `server.js`
