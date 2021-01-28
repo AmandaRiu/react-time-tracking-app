@@ -4,10 +4,24 @@ import React from 'react';
 import EditableTimerList from './components/EditableTimerList';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
 import { newTimer } from './utils/helpers';
+import { getTimers } from './network/client';
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     timers: [],
+  };
+
+  componentDidMount() {
+    console.log( `App > componentDidMount` );
+    this.loadTimersFromServer();
+    setInterval( this.loadTimersFromServer, 5000 );
+  }
+
+  loadTimersFromServer = () => {
+    getTimers( ( serverTimers ) => {
+      console.log( `App > loadTimersFromServer > ${serverTimers}` );
+      this.setState( { timers: serverTimers } );
+    } );
   };
 
   handleCreateFormSubmit = ( timer ) => {
@@ -108,3 +122,5 @@ export default class App extends React.Component {
     );
   }
 };
+
+export default App;
