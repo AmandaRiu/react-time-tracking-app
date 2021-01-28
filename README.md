@@ -22,7 +22,7 @@ One of the biggest departures from the book version is how this version is setup
 
 ## Working with the server
 
-### Testing the server
+### Testing the API
 With the server running, run the following commands from a terminal. To make parsing and viewing the server responses much nicer and easier to work with, use a tool like [jq](https://stedolan.github.io/jq/). 
 
 Check the `data.json` file after each command to verify the changes have been made.
