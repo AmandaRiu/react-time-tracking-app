@@ -9,6 +9,7 @@ This app is based off the version from the [FullStack React (rev. 33 - 2017)](ht
 - [express](http://expressjs.com/): Web server/API.
 - [body-parser](https://www.npmjs.com/package/body-parser): For parsing node.js responses. 
 - [path](https://www.npmjs.com/package/path): (nodejs path module) Utilities for working with file and directory paths. 
+- [concurrently](https://www.npmjs.com/package/concurrently) for running commands concurrently
 
 ## Working with the server
 To start the server: `npm run server`. 
